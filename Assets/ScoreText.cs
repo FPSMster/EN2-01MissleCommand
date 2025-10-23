@@ -23,7 +23,10 @@ public class ScoreText : MonoBehaviour
     }
 
 
-    private void UpdateScoreText() { }
+    private void UpdateScoreText() 
+    {
+        scoreText_.text = $"SCORE:{score_:0000000}";
+    }
 
 
     // Update is called once per frame
