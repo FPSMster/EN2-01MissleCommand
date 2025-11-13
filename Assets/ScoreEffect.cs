@@ -13,19 +13,19 @@ public class ScoreEffect : MonoBehaviour
     [SerializeField]
     float aliveTime_ = 1;
 
-    float aliveTimer_ = 0;
+    float alivedTimer_ = 0;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-        aliveTimer_ += Time.deltaTime;
-        if (aliveTimer_ >= aliveTime_) { Destroy(gameObject); }
+        alivedTimer_ += Time.deltaTime;
+        if (alivedTimer_ >= aliveTime_) { Destroy(gameObject); }
 
         transform.Translate(Vector3.up * upSpeed_ * Time.deltaTime);
 

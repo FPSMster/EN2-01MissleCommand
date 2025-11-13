@@ -66,7 +66,7 @@ public class Meteor : MonoBehaviour
 
         gameManager_.AddScore(score);
 
-        Instantiate(explosionPrefab_, transform.position, quaternion.identity);
+        Instantiate(explosionPrefab_, transform.position, Quaternion.identity);
 
         Destroy(gameObject);
     }
