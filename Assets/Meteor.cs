@@ -11,6 +11,8 @@ public class Meteor : MonoBehaviour
 
     [SerializeField] private float fallSpeedMax_ = 3;
 
+    [SerializeField] ScoreEffect scoreEffectPrefab_;
+
     private Explosion explosionPrefab_;
 
     private BoxCollider2D groundCollider_;
@@ -54,7 +56,15 @@ public class Meteor : MonoBehaviour
 
     private void Explosion() 
     {
-        gameManager_.AddScore(100);
+        int score = 100;
+        ScoreEffect scoreEffect = Instantiate(
+            scoreEffectPrefab_,
+            transform.position,
+            Quaternion.identity
+            );
+        scoreEffect.SetScore(score);
+
+        gameManager_.AddScore(score);
 
         Instantiate(explosionPrefab_, transform.position, quaternion.identity);
 
