@@ -56,17 +56,17 @@ public class Meteor : MonoBehaviour
 
     private void Explosion() 
     {
-        int score = 100;
-        ScoreEffect scoreEffect = Instantiate(
-            scoreEffectPrefab_,
-            transform.position,
-            Quaternion.identity
-            );
-        scoreEffect.SetScore(score);
+        //int score = 100;
+        //ScoreEffect scoreEffect = Instantiate(
+        //    scoreEffectPrefab_,
+        //    transform.position,
+        //    Quaternion.identity
+        //    );
+        //scoreEffect.SetScore(score);
 
-        gameManager_.AddScore(score);
+        gameManager_.AddScore(100);
 
-        Instantiate(explosionPrefab_, transform.position, quaternion.identity);
+        Instantiate(scoreEffectPrefab_, transform.position, Quaternion.identity);
 
         Destroy(gameObject);
     }
