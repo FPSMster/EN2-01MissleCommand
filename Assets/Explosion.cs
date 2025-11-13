@@ -6,6 +6,8 @@ public class Explosion : MonoBehaviour
     private float maxLifeTime_ = 1;
     private float time_ = 0;
 
+    public int chainNum = 0;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     private void Start()
     {
