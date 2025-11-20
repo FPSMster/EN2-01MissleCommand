@@ -16,6 +16,14 @@ public class GameManager : MonoBehaviour
     private BoxCollider2D ground_;
 
     [SerializeField]
+
+    private GameObject reticlePrefab_;
+
+    [SerializeField]
+
+    private Missile missilePrefab_;
+
+    [SerializeField]
     private float meteorInterval_ = 1;
 
     private float meteorTimer_;
@@ -62,7 +70,7 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButtonDown(0)) { GenerateExplosion(); }
+        if (Input.GetMouseButtonDown(0)) { GenerateMissile(); }
 
         UpdateMeteorTimer();
     }
@@ -70,13 +78,20 @@ public class GameManager : MonoBehaviour
    
 
 
-    private void GenerateExplosion()
+    private void GenerateMissile()
     {
-       
-        Vector3 clickPosition = mainCamera_.ScreenToWorldPoint(Input.mousePosition);
+
+        Vector3 clickPosition =
+        mainCamera_.ScreenToWorldPoint(Input.mousePosition);
         clickPosition.z = 0;
 
-        Explosion explosion = Instantiate(explosionPrefab_, clickPosition, Quaternion.identity);
+        GameObject reticle = Instantiate(
+          reticlePrefab_, clickPosition, Quaternion.identity);
+
+        Vector3 launchPosiion = new Vector3(0, -3, 0);
+        Missile missile = Instantiate(
+          missilePrefab_, launchPosiion, Quaternion.identity);
+        missile.Setup(reticle);
 
     }
 
