@@ -48,6 +48,46 @@ public class GameManager : MonoBehaviour
 
     private float life_;
 
+    [SerializeField]
+    List<ItemBase> items_;
+
+    [SerializeField, Header("ItemSettings")]
+
+    private Transform itemSpawnPoint_;
+
+    [SerializeField]
+
+    private float itemSpawnInterval_ = 10;
+
+    private float itemTimer_=0;
+
+    private ItemBase PickupItem()
+    {
+        int itemPrefabNum = items_.Count;
+        Assert.IsTrue(itemPrefabNum > 0);
+
+
+        int pickedupIndex = Random.Range(0, itemPrefabNum);
+        ItemBase pickedupItem = items_[pickedupIndex];
+        return pickedupItem;
+    }
+
+    private void UpdateItemTimer()
+    {
+
+        itemTimer_ -= Time.deltaTime;
+        if (itemTimer_ > 0) { return; }
+
+        itemTimer_ += itemSpawnInterval_;
+
+        ItemBase pickedUpItem = PickupItem();
+        Instantiate(
+          pickedUpItem,
+          itemSpawnPoint_.position,
+          Quaternion.identity
+        );
+    }
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     private void Start()
     {
@@ -73,6 +113,8 @@ public class GameManager : MonoBehaviour
         if (Input.GetMouseButtonDown(0)) { GenerateMissile(); }
 
         UpdateMeteorTimer();
+
+        UpdateItemTimer();
     }
 
    
